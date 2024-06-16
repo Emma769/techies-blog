@@ -31,10 +31,6 @@ func main() {
 
 	defer store.Close()
 
-	if err := store.MigrateDB(); err != nil {
-		log.Fatalf("could not migrate db: %v", err)
-	}
-
 	logger.InfoContext(context.Background(), "db connected")
 
 	mux := chi.NewRouter()
