@@ -1,0 +1,29 @@
+services:
+  techies-blog-api:
+    container_name: techies-blog-api
+    image: techies-blog-api:1.0.0
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    environment:
+      PORT: 8000
+      POSTGRES_URI: "postgres://postgres:postgres@techies-blog-db:5432/postgres?sslmode=disable"
+    ports:
+      - 8000:8000
+    depends_on:
+      - techies-blog-db
+
+  techies-blog-db:
+    container_name: techies-blog-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}

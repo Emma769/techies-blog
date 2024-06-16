@@ -1,0 +1,4 @@
+DROP EXTENSION IF EXISTS "uuid-ossp" CASCADE;
+
+DROP FUNCTION update_timestamp CASCADE;
+DROP FUNCTION update_version CASCADE;
